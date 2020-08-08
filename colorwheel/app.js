@@ -8,7 +8,14 @@ var app = new Vue({
     methods: {
         lock: function (id) {
             this.color_scheme[id].locked = !this.color_scheme[id].locked;
-            console.log(this.color_scheme[id].locked);
+            var span = document.getElementById(String(id) + "span");
+            if (span.classList.contains("fa-unlock")) {
+                span.classList.add("fa-lock");
+                span.classList.remove("fa-unlock");
+            } else {
+                span.classList.remove("fa-lock");
+                span.classList.add("fa-unlock");
+            }
         },
         hexToRgb: function (hex) {
             var bigint = parseInt(hex, 16);

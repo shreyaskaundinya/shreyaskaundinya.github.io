@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <link>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Color Wheel</title>
         <link rel="stylesheet" href="style.css" />
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
-        />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     </head>
     <body>
         <div class="container-main">
@@ -19,7 +16,7 @@
                     v-bind:id="index"
                 >
                     <button @click="lock(index)" class="lock">
-                        <span class="material-icons">lock_open</span>
+                        <span v-bind:id="index+'span'" class="fa fa-unlock"></span>
                     </button>
                     <p>Hex - {{color.hex}}</p>
                     <p>RGB - {{color.rgb}}</p>
