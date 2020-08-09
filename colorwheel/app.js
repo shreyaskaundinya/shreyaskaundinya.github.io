@@ -3,9 +3,27 @@ var app = new Vue({
     data: {
         key: "",
         color_scheme: [],
-        height: "100vh",
+        height: "90vh",
+        True: true,
     },
     methods: {
+        ccc: function (rgb) {
+            var rgb_list = rgb.split(",");
+            var is_dark = false;
+            for (i = 0; i <= rgb_list.length - 1; i++) {
+                if (rgb_list[i] < 100) {
+                    is_dark = true;
+                } else {
+                    is_dark = false;
+                }
+            }
+
+            if (is_dark === false) {
+                return "black";
+            } else {
+                return "white";
+            }
+        },
         lock: function (id) {
             this.color_scheme[id].locked = !this.color_scheme[id].locked;
             var span = document.getElementById(String(id) + "span");
@@ -31,7 +49,7 @@ var app = new Vue({
             this.color_scheme[index].hex = "";
             this.color_scheme[index].rgb = "";
             this.color_scheme[index].locked = false;
-
+            this.color_scheme[index].color_codes_color = "black";
             this.random();
         },
         random: function () {
@@ -62,13 +80,16 @@ var app = new Vue({
                         var random = Math.floor(Math.random() * oct.length);
                         this.color_scheme[k].hex =
                             this.color_scheme[k].hex + oct[random];
-                        this.color_scheme[k].rgb = this.hexToRgb(
-                            this.color_scheme[k].hex.slice(
-                                1,
-                                this.color_scheme[k].hex.length
-                            )
-                        );
                     }
+                    this.color_scheme[k].rgb = this.hexToRgb(
+                        this.color_scheme[k].hex.slice(
+                            1,
+                            this.color_scheme[k].hex.length
+                        )
+                    );
+                    this.color_scheme[k].color_codes_color = this.ccc(
+                        this.color_scheme[k].rgb
+                    );
                 }
             }
             // updated the key to change the value if generate is clicked

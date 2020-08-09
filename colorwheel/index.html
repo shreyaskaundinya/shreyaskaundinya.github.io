@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link>
+    <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Color Wheel</title>
         <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <div class="container-main">
@@ -16,10 +23,24 @@
                     v-bind:id="index"
                 >
                     <button @click="lock(index)" class="lock">
-                        <span v-bind:id="index+'span'" class="fa fa-unlock"></span>
+                        <i
+                            v-bind:id="index+'span'"
+                            class="lock-span fa fa-unlock fa-2x"
+                            v-bind:class="[color.color_codes_color]"
+                        ></i>
                     </button>
-                    <p>Hex - {{color.hex}}</p>
-                    <p>RGB - {{color.rgb}}</p>
+                    <p
+                        class="color-codes"
+                        v-bind:class="[color.color_codes_color]"
+                    >
+                        HEX - {{color.hex}}
+                    </p>
+                    <p
+                        class="color-codes"
+                        v-bind:class="[color.color_codes_color]"
+                    >
+                        RGB - {{color.rgb}}
+                    </p>
                 </div>
             </div>
             <section class="buttons">
