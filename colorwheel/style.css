@@ -3,13 +3,32 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Antic Slab", serif;
+  font-family: 'Antic Slab', serif;
 }
 
 .container-main {
   margin: 0;
   width: 100vw;
-  background-color: #000000;
+  height: 120vh;
+}
+
+.topbar {
+  width: 100vw;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 2px solid black;
+}
+
+.header {
+  font-size: 30px;
 }
 
 .container {
@@ -36,6 +55,11 @@
 }
 
 .color-codes {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.color-name {
   font-size: 20px;
   font-weight: bolder;
 }

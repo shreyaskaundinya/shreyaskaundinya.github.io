@@ -16,12 +16,23 @@
     </head>
     <body>
         <div class="container-main">
+            <div class="topbar">
+                <p class="header">
+                    Color Generator
+                </p>
+            </div>
             <div v-for="color,index in color_scheme" :key="key">
                 <div
                     class="container"
                     v-bind:style="{backgroundColor: color.hex, height: height,}"
                     v-bind:id="index"
                 >
+                    <p
+                        class="color-name"
+                        v-bind:class="[color.color_codes_color]"
+                    >
+                        {{color.name}}
+                    </p>
                     <button @click="lock(index)" class="lock">
                         <i
                             v-bind:id="index+'span'"
@@ -44,7 +55,7 @@
                 </div>
             </div>
             <section class="buttons">
-                <button class="copy">Copy Codes</button>
+                <button @click="copy_codes" class="copy">Copy Codes</button>
                 <button @click="random" class="random">Generate Color</button>
                 <button @click="add" class="add">Add</button>
             </section>
@@ -55,6 +66,7 @@
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"
         ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
         <script src="app.js"></script>
     </body>
 </html>
