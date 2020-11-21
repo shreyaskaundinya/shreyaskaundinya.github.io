@@ -11,6 +11,7 @@ var app = new Vue({
 
     methods: {
         refreshcodes: function () {
+            // function to stringfy the color codes
             var codes = this.color_scheme.map(function (i) {
                 return { name: i.name, hex: i.hex, rgb: 'rgb(' + i.rgb + ')' };
             });
@@ -53,6 +54,7 @@ var app = new Vue({
             return r + ',' + g + ',' + b;
         },
         color_name: async function (k) {
+            // API call to colorapi.com to get name of generated color
             var api_query =
                 'https://www.thecolorapi.com/id?rgb=' +
                 this.color_scheme[k].rgb;
@@ -64,6 +66,30 @@ var app = new Vue({
         add: function () {
             // adds new color to the color scheme
             var index = Object.keys(this.color_scheme).length;
+
+            // to ensure that user knows that adding without locking will regenerate all unlocked colors
+            var isAnyUnlocked = false;
+            if (index != 0) {
+                console.log('ERROR');
+                for (var i = 0; i < index; i++) {
+                    var current = this.color_scheme[i];
+                    if (current.locked === false) {
+                        isAnyUnlocked = true;
+                    }
+                }
+
+                if (isAnyUnlocked === true) {
+                    if (
+                        confirm(
+                            'Warning : If any color is not locked, they too will be regenerated.'
+                        )
+                    ) {
+                    } else {
+                        return;
+                    }
+                }
+            }
+
             this.color_scheme.push(Object());
             this.color_scheme[index].name = '';
             this.color_scheme[index].hex = '';
@@ -94,7 +120,7 @@ var app = new Vue({
 
             /*Color Generator*/
 
-            this.key = '';
+            //this.key = '';
             for (k = 0; k <= this.color_scheme.length - 1; k++) {
                 if (this.color_scheme[k].locked === false) {
                     this.color_scheme[k].hex = '#';
@@ -119,12 +145,13 @@ var app = new Vue({
             }
 
             // updated the key to change the value if generate is clicked
-            this.height =
+            const height =
                 String(Math.floor(100 / this.color_scheme.length)) + 'vh';
             $('.container').css('height', this.height);
-            this.key = 'changed';
+            this.height = height;
         },
         copy_codes: function () {
+            // Copies the codes to clipboard
             this.refreshcodes();
             var input = document.createElement('input');
             input.value = this.codes;
@@ -132,6 +159,7 @@ var app = new Vue({
             input.select();
             document.execCommand('copy');
             document.body.removeChild(input);
+            alert('Codes Copied!');
         },
     },
     computed: {},

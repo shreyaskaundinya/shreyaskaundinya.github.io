@@ -17,9 +17,9 @@
     <body>
         <div class="container-main">
             <div class="topbar">
-                <p class="header">
-                    Color Generator
-                </p>
+                <img class="logo" src="logo.png" alt="" />
+                <p class="header">Color Wheel</p>
+                <p class="tag">Random Color Generator</p>
             </div>
             <div v-for="color,index in color_scheme" :key="key">
                 <div
@@ -43,15 +43,23 @@
                     <p
                         class="color-codes"
                         v-bind:class="[color.color_codes_color]"
+                        id="hex"
                     >
                         HEX - {{color.hex}}
                     </p>
                     <p
                         class="color-codes"
                         v-bind:class="[color.color_codes_color]"
+                        id="rgba"
                     >
                         RGB - {{color.rgb}}
                     </p>
+                    <button class="delete">
+                        <i
+                            class="fa fa-times fa-2x"
+                            v-bind:class="[color.color_codes_color]"
+                        ></i>
+                    </button>
                 </div>
             </div>
             <section class="buttons">

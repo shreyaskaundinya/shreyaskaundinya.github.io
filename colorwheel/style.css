@@ -6,15 +6,27 @@
   font-family: 'Antic Slab', serif;
 }
 
+body::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: scroll;
+}
+
 .container-main {
   margin: 0;
-  width: 100vw;
+  max-width: 100%;
   height: 120vh;
 }
 
 .topbar {
-  width: 100vw;
-  height: 10vh;
+  max-width: 100%;
+  height: 13vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -25,41 +37,53 @@
       -ms-flex-align: center;
           align-items: center;
   border-bottom: 2px solid black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: relative;
+}
+
+.logo {
+  max-width: 4vw;
+  height: auto;
+  margin: 20px 20px;
 }
 
 .header {
   font-size: 30px;
 }
 
+.tag {
+  position: absolute;
+  top: 1em;
+  left: 10em;
+  margin-top: 40px;
+}
+
 .container {
   padding: 0;
   margin: 0;
-  width: 100vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  max-width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas: 'name name name lock hex rgba delete';
+  grid-column-gap: 20px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  justify-items: center;
-}
-
-.lock {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  width: 200px;
-}
-
-.color-codes {
-  font-size: 15px;
-  font-weight: bolder;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: space-between;
+  text-align: center;
 }
 
 .color-name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: name;
   font-size: 20px;
   font-weight: bolder;
 }
@@ -70,6 +94,48 @@
 
 .black {
   color: black;
+}
+
+.lock {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: lock;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 200px;
+  cursor: pointer;
+}
+
+.delete {
+  -ms-grid-row: 1;
+  -ms-grid-column: 7;
+  grid-area: delete;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 200px;
+  cursor: pointer;
+}
+
+.color-codes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+.color-codes #hex {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: hex;
+}
+
+.color-codes #rgba {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: rgba;
 }
 
 .buttons {
@@ -100,7 +166,7 @@
   margin: 10px;
   border: none;
   font-size: 15px;
-  border-radius: 20px;
+  border-radius: 2em;
   -webkit-box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
@@ -127,9 +193,59 @@
   transition: box-shadow 400ms ease-in-out, -webkit-box-shadow 400ms ease-in-out;
 }
 
-#hex-tag,
-#rgba-tag {
-  color: white;
-  font-size: 40px;
+@media (max-width: 660px) {
+  .logo {
+    max-width: 10vw;
+  }
+  .container {
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    justify-items: space-between;
+    text-align: center;
+  }
+  .color-name {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  .white {
+    color: white;
+  }
+  .black {
+    color: black;
+  }
+  .lock {
+    margin: 2em;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 200px;
+  }
+  .color-codes {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 15px;
+    font-weight: bolder;
+  }
+  .color-codes #hex {
+    margin: 2em;
+  }
+  .color-codes #rgba {
+    margin: 2em;
+  }
 }
 /*# sourceMappingURL=style.css.map */
